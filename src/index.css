@@ -58,6 +58,7 @@ label input {
 label:hover {
   background: var(--primary);
   color: white;
+  cursor: pointer;
 }
 
 .output {
@@ -82,6 +83,7 @@ label:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 40px;
+  cursor: pointer;
 }
 
 .img-wrap {
