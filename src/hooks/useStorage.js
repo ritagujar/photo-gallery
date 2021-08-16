@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
-import { projectStorage } from "../firebase/config";
+import {
+  projectStorage,
+  projectFirestore,
+  timestamp,
+} from "../firebase/config";
 
 const useStorage = (file) => {
   const [progress, setProgrees] = useState(0);
@@ -9,6 +13,7 @@ const useStorage = (file) => {
   useEffect(() => {
     // Creating a reference if file into the default firebase storage.
     const storageRef = projectStorage.ref(file.name);
+    const collectionRef = projectFirestore.collection("images");
 
     // Uploading the file to the ubove reference
     storageRef.put(file).on(
@@ -23,6 +28,8 @@ const useStorage = (file) => {
       },
       async () => {
         const url = await storageRef.getDownloadURL();
+        const createdAt = timestamp();
+        collectionRef.add({ url, createdAt });
         setUrl(url);
       }
     );
