@@ -1,4 +1,5 @@
-import * as firebase from "firebase/app";
+// import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 // storage in to store our images
 import "firebase/storage";
 // firestore is a database
