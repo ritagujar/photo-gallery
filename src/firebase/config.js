@@ -17,8 +17,10 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// whenevere we want to interact with firebase backend we use this constants.
 const projectStorage = firebase.storage();
 const projectFirestore = firebase.firestore();
 const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
+// Export those constants so that we can use this in other files.
 export { projectStorage, projectFirestore, timestamp };

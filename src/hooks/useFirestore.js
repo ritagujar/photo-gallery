@@ -8,6 +8,9 @@ const useFirestore = (collection) => {
     const unsub = projectFirestore
       .collection(collection)
       .orderBy("createdAt", "desc")
+
+      // This method fires a callback function everytime a change occurs inside collection.
+      // and it also fires the callback function once initially as well.
       .onSnapshot((snap) => {
         let documents = [];
         snap.forEach((doc) => {
@@ -16,6 +19,7 @@ const useFirestore = (collection) => {
         setDocs(documents);
       });
 
+    // Cleanup function
     return () => unsub();
   }, [collection]);
 

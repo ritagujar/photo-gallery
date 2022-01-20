@@ -8,6 +8,8 @@ const UploadForm = () => {
   const types = ["image/jpeg", "image/png"];
 
   const changeHandler = (e) => {
+    // This will get all of the files we have been selected in array form.
+    // Here we are selecting the first one.
     let selected = e.target.files[0];
 
     if (selected && types.includes(selected.type)) {

@@ -10,6 +10,7 @@ const useStorage = (file) => {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
 
+  // Everytime the file changes (Dependency changes) this useEffect Hook going to render again.
   useEffect(() => {
     // Creating a reference if file into the default firebase storage.
     const storageRef = projectStorage.ref(file.name);
@@ -26,7 +27,10 @@ const useStorage = (file) => {
       (err) => {
         setError(err);
       },
+
+      // This function will gonna fire when upload is fully complete.
       async () => {
+        // This will get the URL of the image which is uploaded.
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
         collectionRef.add({ url, createdAt });
